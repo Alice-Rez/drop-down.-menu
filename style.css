@@ -24,7 +24,7 @@ body {
 /* all of the list items will be without bullet points */
 li {
   list-style-type: none;
-  padding: 1rem;
+  /*padding: 1rem;*/
 }
 
 /* links will be white and without underline */
@@ -204,12 +204,16 @@ it to look good */
 (declaration for .main-navbar > li > summary:hover) */
 
 .main-navbar > li > summary {
-  height: 5vh;
+  /*height: 5vh;
   margin: 0 -1rem;
   padding: 1rem;
   position: relative;
-  top: -1.5vh;
+  top: -1.5vh;*/
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+li a {
+  padding: 1rem;
 }
