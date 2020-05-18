@@ -19,11 +19,6 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 /* -- BASIC STYLING-- */
 
@@ -35,7 +30,7 @@ body {
 /* all of the list items will be without bullet points */
 li {
   list-style-type: none;
-  /*padding: 1rem;*/
+  padding: 1rem;
 }
 
 /* links will be white and without underline */
@@ -123,7 +118,7 @@ put there also the style, which the sub-navbar will have, when it will be later 
 
 .sub-navbar {
   display: none;
-  /*height: 15vh;*/
+  height: 15vh;
   position: absolute;
   width: 100%;
   top: 5vh;
@@ -215,16 +210,16 @@ it to look good */
 (declaration for .main-navbar > li > summary:hover) */
 
 .main-navbar > li > summary {
-  /*height: 5vh;
+  height: 5vh;
   margin: 0 -1rem;
   padding: 1rem;
   position: relative;
-  top: -1.5vh;*/
+  top: -1.5vh;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-li a {
+/*li a {
   padding: 1rem;
-}
+}*/
