@@ -8,6 +8,17 @@
 
 /* --BASIC RESET-- */
 /* I like to have control on margins and paddings, also border box function more intuitively for me */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 * {
   margin: 0;
   padding: 0;
