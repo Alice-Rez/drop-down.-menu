@@ -66,7 +66,7 @@ to maintain :)
 /* last is only setting of the color - the exact hexcode i get from reference image using by GIMP color picker tool  */
 
 .main-navbar {
-  /*height: 5vh;*/
+  height: 5vh;
   display: flex;
   align-items: center;
   position: relative;
