@@ -1,225 +1,60 @@
-/* This is style, that ensure realization of the navbar from reference image, so the dropdown navbar width is 
-        the whole main navbar width and items are aligned at the left side of it */
-
-/* If we want to change it for display of the drop-down only in place directly below corresponding main-item,
- it can be really easy done only by undoing of comments on two properties for .main-navbar > li selector 
- (see line 85, remove comment for items at lines 85-86 and look, what changes :) )
- */
-
-/* --BASIC RESET-- */
-/* I like to have control on margins and paddings, also border box function more intuitively for me */
-html {
-  box-sizing: border-box;
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+nav {
+  background-color: #333333;
+  position: relative;
 }
 
-/* -- BASIC STYLING-- */
-
-/* I do not want to have navbar in whole width of the screen */
-body {
-  margin: 0 2vw;
-}
-
-/* all of the list items will be without bullet points */
 li {
   list-style-type: none;
-  padding: 1rem;
+  padding: 1em;
 }
 
-/* links will be white and without underline */
-
-a {
-  color: white;
+ul > li > a {
   text-decoration: none;
+  color: white;
 }
 
-/* only to make the mock-up content look a little bit better - see html, why I added the paragraph */
-
-main {
-  margin-top: 2vw;
+.main-navbar {
+  padding: 0;
+  display: flex;
 }
 
-/* adding of the arrow down after the main navbar items (links) 
-- used css code for it from https://unicode-table.com/en/25BC/ */
-
-summary > a::after {
+.main-navbar > li {
+  position: relative;
+  padding-right: 3em;
+  transition: background 500ms linear 50ms;
+}
+.main-navbar > li > a::after {
   content: " \25BC";
 }
 
-/* -- SETTING LAYOUT AND TRANSITIONS */
-
-/* main navbar is flexbox (to make the main items in column and be able to easily center them without necessity
-of setting the margins / paddings*/
-
-/* I also gave navbar some defined height, so it will be than easier to set correct position of dropdown menu */
-
-/* I used relative position for it, so the dropdown will be positioned accordingly to position of the .main-navbar
-and in the same time, main navbar will be still in the normal flow of the document.
-
-I could also positioned dropdown absolutely according to the body (when I do not use relative position on
-main-navbar), but then, when I change position of the main-navbar or make it smaller - only in the center, 
-the dropdown would be stuck where it is now.... So with setting relative position to main-navbar, it is easier
-to maintain :)
-*/
-
-/* last is only setting of the color - the exact hexcode i get from reference image using by GIMP color picker tool  */
-
-.main-navbar {
-  height: 5vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  background-color: #333333;
-}
-
-/* setting some style to main items of main-navbar*/
-/*the height is there only to make sure, that there is no line between main-item and dropdown menu
- when hover at main item */
-
-/* If I position the main-items relatively, then the dropdown part of menu will be displayed only under 
- corresponding main item. */
-
-/* Flex-basis is there to ensure, that the items will have enough place, so it would not need to be wrapped in
- two rows */
-
-.main-navbar > li {
-  height: 100%;
-  /* position: relative;
-  flex-basis: 200px; */
-}
-
-/* --now the fun begins, we are starting to style the dropdown, adding hover behavior and transitions-- */
-
-/* At first, I style the dropdown part of menu - sub-navbar. In default state, I want it to not be displayed. But I 
-put there also the style, which the sub-navbar will have, when it will be later displayed  */
-
-/* I gave it some height */
-
-/* The most crucial thing is position - it is positioned absolutely, so I have control on where it will be placed 
- */
-
-/* It will get automatically same width as the closest parenting element with position different than static
-  - in my case it is main-navbar.
-  When i wanted to position it accordingly to the main items in main-navbar (.main-navbar > li), it would automatically
-   get same width as these elements (see css file: style-dropdown-under-item.css and see differences/no differences :D )  */
-
-/* also automatically it would be placed at beginning of the navbar - so it would overlay it. Therefore, I made
-   positioned it to start 5vh lower (so it will be under the main navbar). Left is 0, so it will be aligned with
-   main-navbar  */
-
-/* Naturally, i added also background color, hex code was extracted from reference image using GIMP color picker tool */
-
 .sub-navbar {
-  display: none;
-  height: 15vh;
   position: absolute;
-  width: 100%;
-  top: 5vh;
+  top: 100%;
   left: 0;
+  padding: 0;
+  width: 100%;
+  background-color: #2688cd;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 200ms linear 50ms;
+}
+
+.sub-navbar > li {
+  transition: background 500ms linear 50ms;
+}
+
+.main-navbar > li:hover {
   background-color: #2688cd;
 }
 
-/* -And now the hover actions: */
-
-/* With hover on main item, its color will be blue */
-
-/* Finally some transition between the states - because the drop-down is display quickly, I made it also quite quick  */
-
-/* This declaration will ensure, that when hover above the items from drop-down part of menu, the main item in
-main-navbar will still have hovering effect - blue background-color */
-
-/* I like it like this better, because you can clearly see, in which part of main-navbar you are (which main item has
-its sub-navbar dropped down...) */
-
-/* .main-navbar > li:hover {
-  background-color: #2688cd;
-  transition: background-color 1s;
-} */
-
-/* If we want the item from main-navbar to go back to default background-color of main-navbar when hovering above items 
-from drop-down part of the menu, we declare hovering effect only for link-wrapper */
-
-/* When the next declaration is used (comment is removed), than the declaration for .main-nav > li:hover 
-(lines 129-132) need to be put inside of comment */
-
-.main-navbar > li > summary:hover {
-  background-color: #2688cd;
-  transition: background-color 1s;
-}
-
-/* When hover on main item, the corresponding drop-down part of the menu will be displayed */
-/* I used flex, because then I can easily center items inside :)  */
-
-.main-navbar > li:hover > .sub-navbar {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-/* size of the items of the sub-navbar are bigger then content, so this flexbox is only for centering the content
- of them - the text*/
-
-.main-navbar > li:hover > .sub-navbar > li {
-  flex: 1;
-  /* border: solid 2px black; */
-  display: flex;
-  align-items: center;
-}
-
-/* When hover on the items of the sub-navbar, the background will change the color.... */
-/* And once again transition...... */
-
-.sub-navbar > li:hover {
-  background-color: white;
-  transition: background-color 1s;
+.main-navbar > li:hover .sub-navbar {
+  transform: scale(1, 1);
 }
 
 .sub-navbar > li:hover {
-  background-color: white;
-  transition: background-color 1s;
+  background-color: rgba(255, 255, 255, 0.7);
 }
-
-/*... and the text inside of link anchor will change the color  */
-/* And once again transition...... */
 
 .sub-navbar > li:hover > a {
   color: black;
-  transition: background-color 1s;
 }
-
-/* --STYLLING, WHEN WE WANT TO CHANGE BACKGROUND OF MAIN ITEM BACK WITH HOVERING ABOVE ITEM FROM DROP-DOWN-- */
-
-/* I needed to give link a wrapper, which will fill the place on navbar and hovering will be done on it */
-
-/* because I was not able to make a in the main-navbar to take whole place which is possible..... and I wanted
-it to look good */
-
-/* We also need to give it relative position, because from some reason,  it is shifted */
-
-/* rest is only for styling */
-
-/* for change of the background back to default one of main-navbar, put all things at lines 129-132 (declaration for
-.main-navbar > li:hover) in comment and remove comment at lines 140-143 
-(declaration for .main-navbar > li > summary:hover) */
-
-.main-navbar > li > summary {
-  height: 5vh;
-  margin: 0 -1rem;
-  padding: 1rem;
-  position: relative;
-  top: -1.5vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/*li a {
-  padding: 1rem;
-}*/
